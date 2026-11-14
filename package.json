@@ -1,0 +1,23 @@
+{
+  "name": "job-search-workspace",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "netlify dev",
+    "dev:ui": "vite --host 127.0.0.1",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@netlify/database": "^2.0.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.0",
+    "netlify-cli": "26.0.0",
+    "vite": "^8.3.0"
+  }
+}
