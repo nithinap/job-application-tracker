@@ -6,7 +6,7 @@ Build a private personal workspace that carries a job search from saving a role 
 
 ## Recommended product boundary
 
-Build a privately hosted, single-user web app for one job seeker. Use the same GitHub-push-to-Netlify deployment workflow as the personal website, but put the app in its own private GitHub repository and its own Netlify project. This keeps the job app's access controls and deployment settings independent from the personal website and reduces the chance of career data entering a website repo. Keep job records, the resume source, and generated files in private runtime storage; the Git repo should contain application code only.
+Build a privately hosted, single-user web app for one job seeker. Use the same GitHub-push-to-Netlify deployment workflow as the personal website, in a separate repository and Netlify project. The current GitHub repository is public, so the source and planning files are visible; make it private if source privacy is needed. Keep the Netlify project private and keep job records, the resume source, and generated files in private runtime storage; the Git repo should contain application code only.
 
 The current Netlify Free plan supports this single-owner setup: private project visibility, personal-account private GitHub repositories, Functions, Netlify Database (Basic), and Blobs are included. Keep the Netlify project private for production and previews. A private GitHub repo does not, by itself, make the deployed app private. On Free, private projects are owner-only, which matches the one-user scope; every data-reading/writing function should still verify the authenticated Netlify user. Store service credentials in Netlify environment variables, never in the repo.
 

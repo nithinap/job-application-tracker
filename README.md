@@ -1,6 +1,6 @@
 # Job Search Workspace
 
-Private, single-user job application tracker built for Netlify Free.
+A personal job application tracker built for private Netlify hosting.
 
 ## Local development
 
@@ -23,12 +23,14 @@ The local API allows requests without a Netlify login only when `CONTEXT=dev`.
 
 ## Netlify setup
 
-1. Create a separate private GitHub repository under your personal account and connect it to a new Netlify project.
+1. Connect this GitHub repository to a new Netlify project.
 2. Keep the Netlify project private for production and deploy previews. On Free, only the team owner can access it.
 3. Add Netlify Database to the project. The migration in `netlify/database/migrations` creates the tracker tables.
 4. Push code to GitHub to deploy. Keep resume files and application data in Netlify storage, never in this repository.
 
 The Free plan's 300 monthly credits are shared by all projects in the same Netlify team. Production deploys use 15 credits each; all projects pause if the team's hard limit is reached. Use Deploy Previews while iterating and monitor the team's credit balance.
+
+The GitHub repository is currently public, so its source and planning files are visible. Netlify site privacy is a separate setting; change repository visibility too if you want the source private.
 
 ## Current scope
 
