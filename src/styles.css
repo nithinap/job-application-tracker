@@ -25,6 +25,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .brand-mark { display: grid; width: 27px; height: 27px; place-items: center; color: #fff; background: var(--green); border-radius: 7px; font-size: 14px; }
 .brand-light { color: var(--muted); font-weight: 450; }
 .topbar-right { display: flex; align-items: center; gap: 20px; }
+.quick-capture-short { display: none; }
 .privacy-label { display: inline-flex; align-items: center; gap: 7px; color: var(--soft); font-size: 11px; }
 .privacy-dot { width: 6px; height: 6px; border-radius: 50%; background: #39a77d; }
 
@@ -103,6 +104,17 @@ tbody tr:hover { background: #fcfdfc; }
 .field small { margin-top: -2px; color: var(--muted); font-size: 10px; font-weight: 450; line-height: 1.4; }
 .form-error { margin: 13px 0 0; color: var(--red); font-size: 12px; }
 .dialog-footer { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 21px 15px; background: #fff; border-top: 1px solid var(--line); }
+.form-details { padding-top: 13px; border-top: 1px solid var(--line); }
+.form-details summary { color: var(--green); cursor: pointer; font-size: 11px; font-weight: 650; }
+.form-grid-nested { margin-top: 13px; }
+.status-cell { min-width: 135px; }
+.mark-applied { display: block; padding: 4px 5px; }
+.capture-instructions p { margin: 0 0 14px; color: var(--soft); font-size: 12px; line-height: 1.55; }
+.bookmarklet-install { display: flex; align-items: center; gap: 12px; margin: 17px 0; padding: 12px; background: #f8faf8; border: 1px solid var(--line); border-radius: 7px; }
+.bookmarklet-link { display: inline-flex; min-height: 34px; align-items: center; padding: 0 12px; color: #fff; background: var(--green); border-radius: 5px; font-size: 11px; font-weight: 600; text-decoration: none; user-select: none; }
+.bookmarklet-link:active { cursor: grabbing; }
+.bookmarklet-install span, .capture-note { color: var(--muted); font-size: 10px; }
+.capture-instructions .capture-note { margin-bottom: 0; color: var(--muted); font-size: 10px; }
 .dialog-small { display: flex; width: min(480px, calc(100% - 28px)); flex-direction: column; }
 .dialog-small .activity-list { max-height: min(60vh, 560px); overflow: auto; }
 .activity-list { display: grid; gap: 0; margin: 0; padding: 17px 21px 8px; list-style: none; }
@@ -123,7 +135,10 @@ tbody tr:hover { background: #fcfdfc; }
 @media (max-width: 540px) {
   .topbar { height: 58px; }
   .brand { font-size: 12px; }
-  .topbar .button { min-height: 33px; padding: 0 9px; font-size: 11px; }
+  .topbar-right { gap: 7px; }
+  .topbar .button { min-height: 33px; padding: 0 8px; font-size: 10px; }
+  .quick-capture-long { display: none; }
+  .quick-capture-short { display: inline; }
   .section-heading h1 { font-size: 23px; }
   .overview-summary { max-width: 250px; line-height: 1.5; }
   .toolbar { flex-direction: column; }

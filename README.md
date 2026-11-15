@@ -34,4 +34,4 @@ The GitHub repository is currently public, so its source and planning files are 
 
 ## Current scope
 
-The interface uses React with Vite and keeps the existing Netlify Functions and database backend. The app tracks opportunities, status changes, job URLs/descriptions, and follow-ups. It does not yet fetch job pages, import a LaTeX resume, generate tailored resumes, or export PDFs.
+The interface uses React with Vite and keeps the existing Netlify Functions and database backend. Use **Quick capture** in the app to add the “Track this job” bookmarklet to a desktop browser’s bookmarks bar. Clicking it on a job posting opens a review form with the URL and available page details prefilled. On mobile, use **Add role** and paste the posting URL. The app tracks opportunities, status changes, job URLs/descriptions, and follow-ups. It does not yet import a LaTeX resume, generate tailored resumes, or export PDFs.

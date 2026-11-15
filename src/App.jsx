@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import HistoryDialog from "./components/HistoryDialog.jsx";
+import BookmarkletDialog from "./components/BookmarkletDialog.jsx";
 import OpportunityDialog from "./components/OpportunityDialog.jsx";
 import OpportunityTable from "./components/OpportunityTable.jsx";
 import OverviewSummary from "./components/OverviewSummary.jsx";
-import { STATUSES, today } from "./lib/opportunities.js";
+import { safeJobUrl, STATUSES, today } from "./lib/opportunities.js";
 
 const API_URL = "/api/opportunities";
 
@@ -34,6 +35,8 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [captureHelpOpen, setCaptureHelpOpen] = useState(false);
+  const [quickCapture, setQuickCapture] = useState(false);
   const [selectedOpportunity, setSelectedOpportunity] = useState(null);
   const [historyOpportunity, setHistoryOpportunity] = useState(null);
   const [updatingId, setUpdatingId] = useState(null);
@@ -54,10 +57,26 @@ export default function App() {
 
   useEffect(() => {
     void loadOpportunities();
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("capture") !== "1") return;
+
+    setSelectedOpportunity({
+      title: (params.get("title") || "").slice(0, 180),
+      company: (params.get("company") || "").slice(0, 180),
+      location: (params.get("location") || "").slice(0, 180),
+      source: (params.get("source") || "").slice(0, 100),
+      url: safeJobUrl(params.get("url") || ""),
+      status: "Saved",
+      discovered_at: today(),
+    });
+    setQuickCapture(true);
+    setDialogOpen(true);
+    window.history.replaceState(window.history.state, "", window.location.pathname + window.location.hash);
   }, []);
 
   function addRole() {
     setSelectedOpportunity(null);
+    setQuickCapture(false);
     setDialogOpen(true);
   }
 
@@ -118,6 +137,9 @@ export default function App() {
         </a>
         <div className="topbar-right">
           <span className="privacy-label"><span className="privacy-dot" aria-hidden="true" />Netlify sign-in required</span>
+          <button className="button button-quiet quick-capture-open" type="button" onClick={() => setCaptureHelpOpen(true)}>
+            <span className="quick-capture-long">Quick capture</span><span className="quick-capture-short">Capture</span>
+          </button>
           <button className="button button-primary" type="button" onClick={addRole}><span aria-hidden="true">＋</span> Add role</button>
         </div>
       </header>
@@ -157,7 +179,7 @@ export default function App() {
               updatingId={updatingId}
               onStatusChange={changeStatus}
               onHistory={setHistoryOpportunity}
-              onEdit={(opportunity) => { setSelectedOpportunity(opportunity); setDialogOpen(true); }}
+              onEdit={(opportunity) => { setQuickCapture(false); setSelectedOpportunity(opportunity); setDialogOpen(true); }}
               onDelete={deleteRole}
             />
           )}
@@ -169,12 +191,14 @@ export default function App() {
 
       {dialogOpen && (
         <OpportunityDialog
-          key={selectedOpportunity?.id || "new-role"}
+          key={selectedOpportunity?.id || (quickCapture ? "quick-capture" : "new-role")}
           opportunity={selectedOpportunity}
+          quickCapture={quickCapture}
           onSave={saveRole}
           onClose={() => setDialogOpen(false)}
         />
       )}
+      {captureHelpOpen && <BookmarkletDialog onClose={() => setCaptureHelpOpen(false)} />}
       {historyOpportunity && (
         <HistoryDialog opportunity={historyOpportunity} onClose={() => setHistoryOpportunity(null)} />
       )}

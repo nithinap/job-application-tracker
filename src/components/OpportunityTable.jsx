@@ -17,8 +17,10 @@ function RoleCell({ opportunity }) {
 }
 
 function StatusSelect({ opportunity, disabled, onChange }) {
+  const canMarkApplied = ["Saved", "Interested", "Preparing"].includes(opportunity.status);
+
   return (
-    <td>
+    <td className="status-cell">
       <select
         className={`status-select ${statusClass(opportunity.status)}`}
         aria-label={`Status for ${opportunity.title} at ${opportunity.company}`}
@@ -28,6 +30,9 @@ function StatusSelect({ opportunity, disabled, onChange }) {
       >
         {STATUSES.map((status) => <option key={status}>{status}</option>)}
       </select>
+      {canMarkApplied && (
+        <button className="text-button mark-applied" type="button" disabled={disabled} onClick={() => onChange("Applied")}>Mark applied today</button>
+      )}
     </td>
   );
 }
