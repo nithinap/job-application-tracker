@@ -34,4 +34,14 @@ The GitHub repository is currently public, so its source and planning files are 
 
 ## Current scope
 
-The interface uses React with Vite and keeps the existing Netlify Functions and database backend. Use **Quick capture** in the app to add the “Track this job” bookmarklet to a desktop browser’s bookmarks bar. Clicking it on a job posting opens a review form with the URL and available page details prefilled. On mobile, use **Add role** and paste the posting URL. The app tracks opportunities, status changes, job URLs/descriptions, and follow-ups. It does not yet import a LaTeX resume, generate tailored resumes, or export PDFs.
+The interface uses React with Vite, Netlify Functions, and Netlify Database. It tracks opportunities, status changes, job URLs and descriptions, and follow-ups. **Quick capture** opens a review form from a desktop browser bookmarklet; it does not create a role until you choose **Save role**. On mobile, use **Add role** and paste the posting URL. Page title and URL are captured; company and location are best-effort. On LinkedIn, review all three fields because the title may include site/company text and company or location may be blank. The app does not yet import a LaTeX resume, generate tailored resumes, or export PDFs.
+
+### Install the bookmarklet in Chrome
+
+Open **Quick capture** in the app and drag **Track this job** to the bookmarks bar. If Chrome does not accept the drag:
+
+1. Right-click **Track this job** and select **Copy Link Address**.
+2. Open **Bookmarks → Bookmark Manager**, then select **Organize → Add new bookmark**.
+3. Name it **Track this job**, paste the copied address, choose **Bookmarks Bar**, and save.
+
+If the bookmarks bar is crowded, the bookmark may be under the **»** overflow menu. Click it while a job posting is open to review the captured details in the tracker.

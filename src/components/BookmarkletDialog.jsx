@@ -29,6 +29,10 @@ export default function BookmarkletDialog({ onClose }) {
           <span>Drag to bookmarks bar</span>
         </div>
         <p className="capture-note">The title and link are captured; company and location are best-effort. Review them before saving. On mobile, use <strong>Add role</strong> and paste the posting link.</p>
+        <details className="form-details">
+          <summary>Chrome drag not working?</summary>
+          <p>Right-click <strong>Track this job</strong> and choose <strong>Copy Link Address</strong>. In <strong>Bookmarks → Bookmark Manager</strong>, choose <strong>Organize → Add new bookmark</strong>, paste the address, name it <strong>Track this job</strong>, and save it to <strong>Bookmarks Bar</strong>.</p>
+        </details>
       </div>
       <div className="dialog-footer">
         <button className="button button-quiet" type="button" onClick={() => dialogRef.current?.close()}>Done</button>
